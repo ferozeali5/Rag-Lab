@@ -1,0 +1,5 @@
+anthropic
+supabase
+psycopg2-binary
+python-dotenv
+voyageai

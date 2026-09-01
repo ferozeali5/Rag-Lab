@@ -1,0 +1,14 @@
+[
+  {"name": "Chicken Shawarma Wrap", "description": "Marinated grilled chicken, garlic sauce, pickles, tomato, wrapped in flatbread", "cuisine": "Middle Eastern", "price": "$9.99"},
+  {"name": "Lamb Kofta Plate", "description": "Grilled spiced ground lamb skewers with rice, grilled tomato, and tahini", "cuisine": "Middle Eastern", "price": "$14.99"},
+  {"name": "Falafel Bowl", "description": "Crispy chickpea falafel over hummus, tabbouleh, and pickled turnips, drizzled with tahini", "cuisine": "Middle Eastern", "price": "$11.49"},
+  {"name": "Margherita Pizza", "description": "San Marzano tomato sauce, fresh mozzarella, basil, olive oil, wood-fired crust", "cuisine": "Italian", "price": "$13.00"},
+  {"name": "Spicy Arrabbiata Pasta", "description": "Penne in a spicy tomato and garlic sauce with chili flakes and fresh parsley", "cuisine": "Italian", "price": "$12.50"},
+  {"name": "Pad Thai", "description": "Stir-fried rice noodles with egg, tofu, bean sprouts, crushed peanuts, tamarind sauce", "cuisine": "Thai", "price": "$13.99"},
+  {"name": "Green Curry with Vegetables", "description": "Coconut green curry with eggplant, bamboo shoots, bell pepper, Thai basil, served with jasmine rice", "cuisine": "Thai", "price": "$14.50"},
+  {"name": "Spicy Tuna Roll", "description": "Sushi rice, seaweed, spicy tuna, cucumber, sriracha mayo", "cuisine": "Japanese", "price": "$10.99"},
+  {"name": "Vegetable Gyoza", "description": "Pan-fried dumplings filled with cabbage, mushroom, and scallion, served with soy-vinegar dip", "cuisine": "Japanese", "price": "$8.50"},
+  {"name": "Halibut en Papillote", "description": "Halibut fillet baked in parchment with lemon, capers, cherry tomatoes, and white wine", "cuisine": "American Fine Dining", "price": "$28.00"},
+  {"name": "Beet and Goat Cheese Salad", "description": "Roasted beets, whipped goat cheese, candied walnuts, arugula, balsamic reduction", "cuisine": "American Fine Dining", "price": "$12.00"},
+  {"name": "Vegetarian Araayess", "description": "Flatbread stuffed with spiced mushrooms and cheese, folded and grilled, served with garlic yogurt", "cuisine": "Middle Eastern", "price": "$10.99"}
+]
