@@ -1,8 +1,54 @@
 # Pregustà — consolidated context
 
-Compiled 2026-09-23 from earlier Claude sessions on `ferozeali5/pregusta-app`
-(that repo is not readable from Rag-Lab sessions) and the 9 design/analysis
-artifacts they published. Commit hashes are as reported by those sessions.
+Compiled 2026-09-23 from earlier Claude sessions, their 9 design artifacts,
+and **verified against `ferozeali5/pregusta-app` main @ 944f022 (2026-09-23)**.
+The repo's own `docs/FOR-FEROZE.md` (waiting-on-Feroze list), `docs/ROADMAP.md`
+and `CLAUDE.md` are the source of truth; this file is a summary. The backend
+lives in a separate repo, `~/pregusta-api` (FastAPI on Render, Postgres on
+Supabase), not accessible from here.
+
+## Latest state (verified 2026-09-23)
+- **Launch target moved:** Dec 2026 – Jan 2027, hard backstop 31 Jan 2027
+  (v1 scope decision 2026-09-15: "the bar beats the date"). iOS first, US only.
+  Scope rule: scan quality first.
+- **Apple developer account is live:** first real build done, `eas.json`
+  has the App Store Connect app (f002cb8, 22 Sep); that build found two bugs,
+  both fixed (4ff9117: paywall screen-height hole; 5xx wrongly shown as
+  "Pregustà is waking up").
+- **Deploy of 16 Sep is live** (main at 3831baa then, 940 tests green, 5
+  Supabase migrations verified). Render is now always-on, not free tier.
+- **Login decided 2026-09-23 (bac33f6), not built:** free-scan count follows the
+  account (sign-in never grants a fresh five; each free scan costs ~$0.20);
+  v1 is Apple sign-in only (Restore-by-email covers purchase recovery).
+  Deliberately not next.
+- **Streaming scans:** wired to `/v1/scan-stream` behind `STREAM_SCAN_ENABLED`,
+  which is off (6238ba6). Turning it on is still Feroze's call.
+- **Done 19–23 Sep:** ☰ menu dim settled at 42% (0f696ae) and Help moved out of
+  ☰; sample menu photos regenerated at real-scan quality 1024px (6bddb4b);
+  paste-a-menu-link as a second QR door; paste box warns which menus it can't
+  read; share sheet redone; Ask Pregustà answers in groups; dish-card
+  re-render perf fix; paywall and failure-screen polish; Spanish App Store
+  listing; competitor benchmark table.
+- **Old app branches** `i18n-latin`, `manage-sub-app`, `rag-phase1-app`
+  (all 15 Sep) are still on GitHub; FOR-FEROZE.md asks whether to delete them.
+
+## Waiting on Feroze (from repo `docs/FOR-FEROZE.md`, last updated 16 Sep)
+- 🔴 **Security first:** an old admin password was exposed and is reused on
+  other accounts — secure email + 2FA, then money accounts, then infra;
+  unique passwords everywhere.
+- Decisions: origin story for App Store copy; delete the 3 old branches?;
+  fetcher user-agent `PregustaBot/1.0` vs retry-as-browser (chain menus);
+  approve streaming; pricing / annual plan / free limit / founding perks;
+  second dietary ask for people who skipped it.
+- Hands: lawyer pass on the privacy-policy diff; human read of ~140 religious
+  knowledge-base entries before RAG Phase 1; GitHub token `workflow` scope
+  for CI; Sentry `SENTRY_AUTH_TOKEN` EAS secret (and check the project slug);
+  allow git in `pregusta-api` (except push to main) so Claude can work there.
+- Eyes: "Usually made with" cautions — helpful or noise; 5 screens that may
+  ghost list rows under the header (see ROADMAP).
+- Queued: 14 non-blocker findings from the deploy review
+  (`docs/deploy-review-findings-2026-09-16.md`); PDF menus refused by
+  `safe_fetch.ALLOWED_CONTENT_TYPES`; a composition pass over every screen.
 
 ## What the product is
 - iOS-first menu scanner for travellers. Tagline "KNOW BEFORE YOU ORDER";
@@ -25,7 +71,7 @@ artifacts they published. Commit hashes are as reported by those sessions.
   `subscription_logic.py`, `db.py`, `smoke.py`) on Postgres. Can cold-start
   ("Pregustà is waking up").
 - Payments: Stripe Checkout + billing portal, access granted only by webhook.
-  Apple IAP is scaffolded but blocked on the Apple developer account.
+  Apple IAP scaffolded; Apple developer account now live (see above).
 
 ## Monetization
 - `FREE_SCAN_LIMIT = 5` per device, lifetime (never resets);
@@ -62,7 +108,7 @@ Welcome ("RESERVED for [name]", gold card strike, "Welcome to the club.").
 - WCAG AA contrast fix across theme (commit 5db08027, 16 Sep).
 - Full first-run flow, paywall, Stripe checkout + webhooks.
 - Manage-your-pass screen and endpoints incl. cancel/resume (18 Sep).
-- Stripe `current_period_end` writer fix for API 2025-03-31 (e558d6f, 14 Sep).
+- Stripe `current_period_end` writer fix for API 2025-03-31 (e558d6f in pregusta-api, 14 Sep).
 - Support email falls back to a copyable address if the mail app won't open (18 Sep).
 - As of 16 Sep, pending deploy: engraved pass Nº, "ready instantly" cached-menu line.
 
@@ -75,7 +121,7 @@ Welcome ("RESERVED for [name]", gold card strike, "Welcome to the club.").
 - Lapsed payers get zero free scans forever; consider a few scans/month,
   Stripe `pause_collection`, or seasonal billing.
 - QR codes pointing to JS-rendered or PDF menus fail (falls back to photo).
-- Apple IAP blocked on developer account.
+- Apple IAP: account is now live; RevenueCat product setup still to do.
 
 ## Open — proposed designs (not built; user to judge on device)
 - **Intro:** "Two Ways to Open Pregustà" — Option A "menu in candlelight"
@@ -92,11 +138,11 @@ Welcome ("RESERVED for [name]", gold card strike, "Welcome to the club.").
   Today only billing/restore failures offer "Email us".
 
 ## Loose ends from past sessions
-- "Gold card issue" (16–19 Sep): waiting on a yes/no to drop the sample row
-  (menu length) and lighten the dim overlay opacity. Not shipped.
-- "Session transcript export" (13–16 Sep, archived): 6 open items awaiting a
-  decision; its local checkout had uncommitted changes + 3 unpushed commits on
-  `main` (head 2833d1e). Only exists on that local machine, if anywhere.
+- "Gold card issue" (16–19 Sep): the dim question is resolved (☰ dim 42%,
+  0f696ae). The sample-row/menu-length question may still be open.
+- "Session transcript export" (13–16 Sep, archived): its head 2833d1e **is on
+  main**, so those commits did get pushed. Its 6 open items are most likely
+  the ones in FOR-FEROZE.md.
 - "Pregusta from phone" (19–23 Sep): last task "Reading theme constants";
   its environment was deleted, so it can't be resumed. Check that machine for
   unpushed work.
