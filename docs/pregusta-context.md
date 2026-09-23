@@ -23,8 +23,8 @@ Supabase), not accessible from here.
   Deliberately not next.
 - **Streaming scans:** wired to `/v1/scan-stream` behind `STREAM_SCAN_ENABLED`,
   which is off (6238ba6). Turning it on is still Feroze's call.
-  Step 1 done 2026-09-23: the cancel-on-leave gap is fixed on branch
-  `claude/stream-scan-abort-signal` (f92547a), not merged. Still to go before
+  Step 1 done 2026-09-23: the cancel-on-leave gap is fixed, merged to main
+  as 766a72a (flag still off). Still to go before
   flipping: dev-build test on a phone, a design for partially-streamed dish
   cards (must never show "nothing flagged" early), streaming for QR/paste,
   and confirming `/v1/scan-stream` is live in pregusta-api.
@@ -34,6 +34,11 @@ Supabase), not accessible from here.
   read; share sheet redone; Ask Pregustà answers in groups; dish-card
   re-render perf fix; paywall and failure-screen polish; Spanish App Store
   listing; competitor benchmark table.
+- **Camera ☰ menu (merged to main 199f474, 2026-09-23):** the open card now
+  hangs below the measured header, so it clears the "N free scans left" chip
+  (members have no chip); the ☰ wiggles with a selection tick on open
+  (Reduce Motion: tick only). Not yet seen on a phone. No OTA updates are set
+  up, so TestFlight needs a new EAS build to pick up any change.
 - **Old app branches** `i18n-latin`, `manage-sub-app`, `rag-phase1-app`
   (all 15 Sep) are still on GitHub; FOR-FEROZE.md asks whether to delete them.
 
