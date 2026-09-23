@@ -23,6 +23,11 @@ Supabase), not accessible from here.
   Deliberately not next.
 - **Streaming scans:** wired to `/v1/scan-stream` behind `STREAM_SCAN_ENABLED`,
   which is off (6238ba6). Turning it on is still Feroze's call.
+  Step 1 done 2026-09-23: the cancel-on-leave gap is fixed on branch
+  `claude/stream-scan-abort-signal` (f92547a), not merged. Still to go before
+  flipping: dev-build test on a phone, a design for partially-streamed dish
+  cards (must never show "nothing flagged" early), streaming for QR/paste,
+  and confirming `/v1/scan-stream` is live in pregusta-api.
 - **Done 19–23 Sep:** ☰ menu dim settled at 42% (0f696ae) and Help moved out of
   ☰; sample menu photos regenerated at real-scan quality 1024px (6bddb4b);
   paste-a-menu-link as a second QR door; paste box warns which menus it can't
