@@ -123,7 +123,12 @@ Welcome ("RESERVED for [name]", gold card strike, "Welcome to the club.").
 - QR codes pointing to JS-rendered or PDF menus fail (falls back to photo).
 - Apple IAP: account is now live; RevenueCat product setup still to do.
 
-## Open — proposed designs (not built; user to judge on device)
+## Design notes from the artifacts — status per repo
+Built since the notes: Account redesign and name sheet; intro rebuilt to show
+the product (FOR-FEROZE, 16 Sep); Your pass restructure ("gets a spine", one
+container language, 4752405/f936253); help where things break plus a way out
+of repeated failures (ef882c6); first two screens de-duplicated (3839fe4).
+Check on a phone before treating any of the original proposals below as open:
 - **Intro:** "Two Ways to Open Pregustà" — Option A "menu in candlelight"
   (typographic foreign menu lines resolving to translation + flag + price)
   recommended. Drop logo glow, close empty space, keep "Try a sample".
